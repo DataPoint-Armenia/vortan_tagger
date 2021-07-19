@@ -24,4 +24,4 @@ class tagger:
         query = f'select group_concat({POS_TABLE_TAG_COL}) from (select distinct "{POS_TABLE_TAG_COL}" from "{self.pos_table}" where {POS_TABLE_WORD_COL}="{word}")'
         self.cursor.execute(query);
         result = self.cursor.fetchone()
-        return None if result is None or len(result) < 1 else result[0].split(',')
+        return [] if result is None or len(result) < 1 or result[0] is None else result[0].split(',')
